@@ -3,3 +3,31 @@ task wrapper(type: Wrapper) {
     archiveBase = 'PROJECT'
     archivePath = 'gradle/dists'
 }
+
+allprojects {
+    apply plugin: 'idea'
+}
+
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+    ext {
+          guavaVersion = ’14.0.1’
+          junitVersion = ‘4.10’ 
+   } 
+ 
+    dependencies {
+        compile(
+                “com.google.guava:guava:${guavaVersion}”
+        )
+        testCompile(
+                “junit:junit:${junitVersion}”
+        )
+    }
+}
+
+configure(subprojects.findAll {it.name.contains('war')}) {
+    apply plugin: 'war'
+}
