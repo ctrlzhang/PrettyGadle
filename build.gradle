@@ -1,0 +1,5 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.0'
+    archiveBase = 'PROJECT'
+    archivePath = 'gradle/dists'
+}
